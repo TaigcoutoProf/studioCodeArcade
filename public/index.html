@@ -5,13 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Studio Code Arcade — Primeiro desafio</title>
   <link rel="stylesheet" href="assets/css/player.css">
+  <link rel="stylesheet" href="assets/css/editor.css">
   <script defer src="assets/js/game/challenge.js"></script>
+  <script defer src="assets/js/game/program.js"></script>
   <script defer src="assets/js/player/board.js"></script>
+  <script defer src="assets/js/player/editor.js"></script>
 </head>
 <body>
   <header class="topbar"><a class="brand" href="index.html"><span class="brand-icon">S</span> STUDIO CODE <strong>ARCADE</strong></a><span class="badge">LABORATÓRIO VIRTUAL</span></header>
   <main>
-    <div class="intro"><p class="eyebrow">MISSÃO 01 · PRIMEIROS PASSOS</p><h1>Um caminho.<br><span>Muitas descobertas.</span></h1><p>Observe o tabuleiro e imagine uma sequência de comandos para levar o robô até o objetivo.</p></div>
+    <div class="intro"><p class="eyebrow">MISSÃO 01 · PRIMEIROS PASSOS</p><h1>Um caminho.<br><span>Muitas descobertas.</span></h1><p>Observe o tabuleiro e monte uma sequência de comandos para levar o robô até o objetivo.</p></div>
     <div class="workspace">
       <section class="board-panel" aria-labelledby="board-title">
         <div class="panel-heading"><div><p class="eyebrow">EXPLORE O DESAFIO</p><h2 id="board-title">Encontre a chegada</h2></div><span class="dimension">5 × 3</span></div>
@@ -20,11 +23,26 @@
       </section>
       <aside class="side-panel">
         <div class="robot-card"><span class="eyebrow">SEU COMPANHEIRO</span><div class="robot-title"><h2>BOT-001</h2><span class="status">Virtual</span></div><p>Posição inicial <strong>coluna 1 · linha 1</strong></p><p>Orientação <strong>→ Leste</strong></p></div>
-        <section class="instructions"><p class="eyebrow">PENSE ANTES DE EXECUTAR</p><h2>Qual será o seu caminho?</h2><ol><li>Encontre o robô e o objetivo.</li><li>Observe onde estão os obstáculos.</li><li>Planeje os movimentos na ordem certa.</li></ol><div class="note">Cada movimento percorre uma célula. Cada giro muda a direção em 90°.</div></section>
-        <section class="next"><span class="step-label">PRÓXIMA ETAPA</span><h3>Monte seu algoritmo</h3><p>O editor de comandos será adicionado no próximo milestone. Nesta etapa, exploramos o tabuleiro.</p></section>
+        <section class="editor" aria-labelledby="editor-title">
+          <div class="editor-heading"><div><p class="eyebrow">PENSE ANTES DE EXECUTAR</p><h2 id="editor-title">Seu algoritmo</h2></div><span class="status">Rascunho</span></div>
+          <p class="editor-hint">Toque para adicionar. Depois, use as setas para mudar a ordem.</p>
+          <div class="command-palette" role="group" aria-label="Adicionar comandos ao algoritmo">
+            <button type="button" data-command="FORWARD"><span aria-hidden="true">↑</span> Avançar</button>
+            <button type="button" data-command="BACKWARD"><span aria-hidden="true">↓</span> Recuar</button>
+            <button type="button" data-command="TURN_LEFT"><span aria-hidden="true">↶</span> Virar à esquerda</button>
+            <button type="button" data-command="TURN_RIGHT"><span aria-hidden="true">↷</span> Virar à direita</button>
+          </div>
+          <div class="sequence-heading"><h3>Sequência de comandos</h3><span id="command-count">0 / 30</span></div>
+          <p id="empty-program" class="empty-program">Seu caminho começa aqui.<br><span>Adicione o primeiro comando acima.</span></p>
+          <ol id="program-list" class="program-list" aria-label="Comandos em ordem de execução"></ol>
+          <p id="editor-feedback" class="editor-feedback" role="status" aria-live="polite" aria-atomic="true">Adicionar comandos não movimenta o robô.</p>
+          <p class="draft-note">Rascunho temporário: recarregar ou fechar esta página apaga a sequência.</p>
+          <div class="note">Avançar e recuar seguem a orientação do robô. Cada movimento percorre uma célula; cada giro muda a direção em 90°.</div>
+        </section>
+        <section class="next"><span class="step-label">PRÓXIMA ETAPA</span><h3>Confirmar e carregar</h3><p>A confirmação, o salvamento e a execução serão adicionados nas próximas etapas.</p></section>
       </aside>
     </div>
-    <footer><span>MVP 0 · Milestone 1</span><span>Imaginar → programar → experimentar</span></footer>
+    <footer><span>MVP 0 · Milestone 2</span><span>Imaginar → programar → experimentar</span></footer>
   </main>
 </body>
 </html>
