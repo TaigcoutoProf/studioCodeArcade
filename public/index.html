@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Studio Code Arcade — Primeiro desafio</title>
+  <link rel="stylesheet" href="assets/css/player.css">
+  <script defer src="assets/js/game/challenge.js"></script>
+  <script defer src="assets/js/player/board.js"></script>
+</head>
+<body>
+  <header class="topbar"><a class="brand" href="index.html"><span class="brand-icon">S</span> STUDIO CODE <strong>ARCADE</strong></a><span class="badge">LABORATÓRIO VIRTUAL</span></header>
+  <main>
+    <div class="intro"><p class="eyebrow">MISSÃO 01 · PRIMEIROS PASSOS</p><h1>Um caminho.<br><span>Muitas descobertas.</span></h1><p>Observe o tabuleiro e imagine uma sequência de comandos para levar o robô até o objetivo.</p></div>
+    <div class="workspace">
+      <section class="board-panel" aria-labelledby="board-title">
+        <div class="panel-heading"><div><p class="eyebrow">EXPLORE O DESAFIO</p><h2 id="board-title">Encontre a chegada</h2></div><span class="dimension">5 × 3</span></div>
+        <div id="board" class="board" role="img" aria-label="Tabuleiro com 5 colunas e 3 linhas. Robô na coluna 1, linha 1, voltado para a direita. Objetivo na coluna 5, linha 3. Obstáculos: coluna 4 linha 1; colunas 2 e 4 linha 2; coluna 2 linha 3."></div>
+        <ul class="legend"><li><i class="dot robot-dot"></i> Seu robô</li><li><i class="dot goal-dot"></i> Objetivo</li><li><i class="dot wall-dot"></i> Obstáculo</li></ul>
+      </section>
+      <aside class="side-panel">
+        <div class="robot-card"><span class="eyebrow">SEU COMPANHEIRO</span><div class="robot-title"><h2>BOT-001</h2><span class="status">Virtual</span></div><p>Posição inicial <strong>coluna 1 · linha 1</strong></p><p>Orientação <strong>→ Leste</strong></p></div>
+        <section class="instructions"><p class="eyebrow">PENSE ANTES DE EXECUTAR</p><h2>Qual será o seu caminho?</h2><ol><li>Encontre o robô e o objetivo.</li><li>Observe onde estão os obstáculos.</li><li>Planeje os movimentos na ordem certa.</li></ol><div class="note">Cada movimento percorre uma célula. Cada giro muda a direção em 90°.</div></section>
+        <section class="next"><span class="step-label">PRÓXIMA ETAPA</span><h3>Monte seu algoritmo</h3><p>O editor de comandos será adicionado no próximo milestone. Nesta etapa, exploramos o tabuleiro.</p></section>
+      </aside>
+    </div>
+    <footer><span>MVP 0 · Milestone 1</span><span>Imaginar → programar → experimentar</span></footer>
+  </main>
+</body>
+</html>
