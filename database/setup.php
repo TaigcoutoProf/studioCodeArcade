@@ -9,9 +9,12 @@ try {
         $pdo->exec('CREATE DATABASE IF NOT EXISTS `' . $config['name'] . '` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci');
     }
     $pdo = Database::connect($config);
-    $schema = file_get_contents(__DIR__ . '/schema.sql');
-    foreach (explode(';', $schema) as $statement) {
-        if (trim($statement) !== '') $pdo->exec($statement);
+    foreach (['migration.sql', 'seeds.sql'] as $file) {
+        $sql = file_get_contents(__DIR__ . '/../SQL/' . $file);
+        if ($sql === false) throw new RuntimeException('Arquivo SQL não encontrado: ' . $file);
+        foreach (explode(';', $sql) as $statement) {
+            if (trim($statement) !== '') $pdo->exec($statement);
+        }
     }
     echo 'Banco preparado: ' . $config['name'] . PHP_EOL;
 } catch (Throwable $error) {

@@ -1,4 +1,4 @@
-﻿# Studio Code Arcade
+# Studio Code Arcade
 
 MVP 0 — milestone 3: confirmação, persistência PHP/MySQL e carregamento do robô virtual.
 
@@ -35,13 +35,15 @@ Se a conexão falhar durante a confirmação, use **Tentar confirmar novamente**
 - `src/Application/`: confirmação e recibo de carregamento.
 - `src/Persistence/`: MySQL, consultas preparadas e transações.
 - `config/`: conexão; credenciais locais fora do Git.
-- `database/`: esquema e preparação idempotente.
+- `SQL/migration.sql`: estrutura inicial do banco.
+- `SQL/seeds.sql`: desafio inicial.
+- `database/`: instalador que executa os dois arquivos SQL em ordem.
 - `tests/`: domínio, fluxo e integração HTTP com banco real.
 - `docs/milestone-3.md`: decisões, estados, endpoints e limites.
 
 ## HostGator e Apache
 
-Configure a raiz pública para `public/`. Em hospedagem compartilhada, publique o conteúdo dessa pasta em `public_html` e mantenha `src/` e `config/` como pastas irmãs, fora de `public_html`. Crie o banco e o usuário no painel da hospedagem; importe `database/schema.sql` pelo phpMyAdmin ou execute `php database/setup.php` pela linha de comando quando disponível.
+Configure a raiz pública para `public/`. Em hospedagem compartilhada, publique o conteúdo dessa pasta em `public_html` e mantenha `src/` e `config/` como pastas irmãs, fora de `public_html`. Crie o banco e o usuário no painel da hospedagem; importe primeiro `SQL/migration.sql` e depois `SQL/seeds.sql` pelo phpMyAdmin. Alternativamente, execute `php database/setup.php` pela linha de comando quando disponível. Veja `SQL/README.md` para instalar em outra máquina.
 
 Use credenciais próprias da hospedagem em `config/local.php`; não utilize o usuário root do XAMPP em produção. O `.htaccess` da raiz nega acesso direto às pastas internas e o de `public/` permite a aplicação em Apache 2.4, quando overrides estiverem habilitados. A configuração da hospedagem ainda deve ser verificada antes de publicar.
 
@@ -62,11 +64,11 @@ Verificações manuais: montar e reorganizar com toque/teclado; confirmar; verif
 
 ## Commits e histórico
 
-Padrão: Conventional Commits, `tipo(escopo): descrição`, uma etapa funcional por commit. Os commits anteriores `feat: ...` são válidos sem escopo e foram preservados. Remoto origin: https://github.com/TaigcoutoProf/studioCodeArcade.git. Nenhum push realizado.
+Padrão: Conventional Commits, `tipo(escopo): descrição`, uma etapa funcional por commit. Os commits anteriores `feat: ...` são válidos sem escopo e foram preservados. Remoto origin: https://github.com/TaigcoutoProf/studioCodeArcade.git. Os commits estão locais. A publicação pela conexão GitHub foi recusada com erro 403 (integração sem permissão de gravação). Use o bundle para transportar o histórico até liberar o envio ao remoto.
 
 O ZIP não contém credenciais locais, dados do banco, sessões nem a pasta Git. Para recuperar o histórico do bundle separado:
 
 ```powershell
-git clone studioCodeArcade-milestone-3.bundle studioCodeArcade
+git clone studioCodeArcade-sql.bundle studioCodeArcade
 git -C studioCodeArcade remote set-url origin https://github.com/TaigcoutoProf/studioCodeArcade.git
 ```

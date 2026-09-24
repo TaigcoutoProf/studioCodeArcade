@@ -84,6 +84,10 @@ test('API real PHP + MySQL: confirmação, isolamento, validação, repetição 
     assert.equal((await request('bootstrap')).data.latest.run.status, 'READY_TO_START');
     const counts = phpRun(['-r', "require 'src/bootstrap.php'; $c=require 'config/database.php'; $p=Database::connect($c); echo $p->query('SELECT COUNT(*) FROM programs')->fetchColumn().':'.$p->query('SELECT COUNT(*) FROM runs')->fetchColumn();"]);
     assert.equal(counts, '1:1');
+    // Reaplicar os arquivos separados preserva programas e não duplica o seed.
+    phpRun(['database/setup.php']);
+    const repeatedCounts = phpRun(['-r', "require 'src/bootstrap.php'; $c=require 'config/database.php'; $p=Database::connect($c); echo $p->query('SELECT COUNT(*) FROM challenges')->fetchColumn().':'.$p->query('SELECT COUNT(*) FROM programs')->fetchColumn().':'.$p->query('SELECT COUNT(*) FROM runs')->fetchColumn();"]);
+    assert.equal(repeatedCounts, '1:1:1');
     // Arquivos internos nunca devem ser servidos com public/ como raiz.
     assert.equal((await fetch(`http://127.0.0.1:${port}/config/database.php`)).status, 404);
   } finally {
