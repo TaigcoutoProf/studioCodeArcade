@@ -1,7 +1,7 @@
 'use strict';
-(() => {
-  const challenge = window.StudioArcade.challenge;
+window.renderBoard = function (challenge) {
   const board = document.getElementById('board');
+  board.replaceChildren();
   const arrows = { NORTH: '↑', EAST: '→', SOUTH: '↓', WEST: '←' };
   board.style.setProperty('--columns', challenge.grid.width);
   for (let y = 0; y < challenge.grid.height; y += 1) {
@@ -30,4 +30,5 @@
       board.append(cell);
     }
   }
-})();
+};
+window.renderBoard(window.StudioArcade.challenge);

@@ -8,6 +8,9 @@
   <link rel="stylesheet" href="assets/css/editor.css">
   <script defer src="assets/js/game/challenge.js"></script>
   <script defer src="assets/js/game/program.js"></script>
+  <script defer src="assets/js/robot/virtual-robot.js"></script>
+  <script defer src="assets/js/api/client.js"></script>
+  <script defer src="assets/js/game/confirmation.js"></script>
   <script defer src="assets/js/player/board.js"></script>
   <script defer src="assets/js/player/editor.js"></script>
 </head>
@@ -22,27 +25,34 @@
         <ul class="legend"><li><i class="dot robot-dot"></i> Seu robô</li><li><i class="dot goal-dot"></i> Objetivo</li><li><i class="dot wall-dot"></i> Obstáculo</li></ul>
       </section>
       <aside class="side-panel">
-        <div class="robot-card"><span class="eyebrow">SEU COMPANHEIRO</span><div class="robot-title"><h2>BOT-001</h2><span class="status">Virtual</span></div><p>Posição inicial <strong>coluna 1 · linha 1</strong></p><p>Orientação <strong>→ Leste</strong></p></div>
+        <div class="robot-card"><span class="eyebrow">SEU COMPANHEIRO</span><div class="robot-title"><h2>BOT-001</h2><span class="status">Virtual</span></div><p>Posição inicial <strong>coluna 1 · linha 1</strong></p><p>Orientação <strong>→ Leste</strong></p><p>Estado <strong id="robot-status">Aguardando programa</strong></p></div>
         <section class="editor" aria-labelledby="editor-title">
-          <div class="editor-heading"><div><p class="eyebrow">PENSE ANTES DE EXECUTAR</p><h2 id="editor-title">Seu algoritmo</h2></div><span class="status">Rascunho</span></div>
+          <div class="editor-heading"><div><p class="eyebrow">PENSE ANTES DE EXECUTAR</p><h2 id="editor-title">Seu algoritmo</h2></div><span id="program-status" class="status">Rascunho</span></div>
           <p class="editor-hint">Toque para adicionar. Depois, use as setas para mudar a ordem.</p>
           <div class="command-palette" role="group" aria-label="Adicionar comandos ao algoritmo">
-            <button type="button" data-command="FORWARD"><span aria-hidden="true">↑</span> Avançar</button>
-            <button type="button" data-command="BACKWARD"><span aria-hidden="true">↓</span> Recuar</button>
-            <button type="button" data-command="TURN_LEFT"><span aria-hidden="true">↶</span> Virar à esquerda</button>
-            <button type="button" data-command="TURN_RIGHT"><span aria-hidden="true">↷</span> Virar à direita</button>
+            <button type="button" data-command="FORWARD" disabled><span aria-hidden="true">↑</span> Avançar</button>
+            <button type="button" data-command="BACKWARD" disabled><span aria-hidden="true">↓</span> Recuar</button>
+            <button type="button" data-command="TURN_LEFT" disabled><span aria-hidden="true">↶</span> Virar à esquerda</button>
+            <button type="button" data-command="TURN_RIGHT" disabled><span aria-hidden="true">↷</span> Virar à direita</button>
           </div>
           <div class="sequence-heading"><h3>Sequência de comandos</h3><span id="command-count">0 / 30</span></div>
           <p id="empty-program" class="empty-program">Seu caminho começa aqui.<br><span>Adicione o primeiro comando acima.</span></p>
           <ol id="program-list" class="program-list" aria-label="Comandos em ordem de execução"></ol>
           <p id="editor-feedback" class="editor-feedback" role="status" aria-live="polite" aria-atomic="true">Adicionar comandos não movimenta o robô.</p>
-          <p class="draft-note">Rascunho temporário: recarregar ou fechar esta página apaga a sequência.</p>
+          <div class="confirmation-panel">
+            <p id="confirmation-progress" class="eyebrow">Conectando ao desafio…</p>
+            <p id="confirmation-feedback" class="confirmation-feedback" role="status" aria-live="polite" aria-atomic="true" tabindex="-1">Aguarde a conexão com o servidor.</p>
+            <p id="confirmed-summary" class="confirmed-summary" hidden></p>
+            <button id="confirm-program" class="primary-action" type="button" disabled>Confirmar algoritmo</button>
+            <button id="retry-confirmation" class="primary-action" type="button" hidden>Tentar novamente</button>
+          </div>
+          <p class="draft-note">Rascunhos não são salvos. Após confirmar, o programa fica salvo no banco e bloqueado. Recarregar recupera o último programa confirmado enquanto esta sessão estiver ativa.</p>
           <div class="note">Avançar e recuar seguem a orientação do robô. Cada movimento percorre uma célula; cada giro muda a direção em 90°.</div>
         </section>
-        <section class="next"><span class="step-label">PRÓXIMA ETAPA</span><h3>Confirmar e carregar</h3><p>A confirmação, o salvamento e a execução serão adicionados nas próximas etapas.</p></section>
+        <section class="next"><span class="step-label">PRÓXIMA ETAPA</span><h3>Ver seu algoritmo em ação</h3><p>O programa já pode ser preparado. A execução visual será adicionada na próxima etapa.</p></section>
       </aside>
     </div>
-    <footer><span>MVP 0 · Milestone 2</span><span>Imaginar → programar → experimentar</span></footer>
+    <footer><span>MVP 0 · Milestone 3</span><span>Imaginar → programar → experimentar</span></footer>
   </main>
 </body>
 </html>

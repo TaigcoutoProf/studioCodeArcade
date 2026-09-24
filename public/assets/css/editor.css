@@ -25,6 +25,11 @@ button:disabled { opacity: .4; cursor: default; }
 .step-action.remove { color: #ffb6b6; }
 .editor-feedback { min-height: 40px; margin: 12px 0 4px; font-size: 12px; color: #b4f47e; }
 .draft-note { margin: 4px 0 18px; }
+.confirmation-panel { border-top: 1px solid #3b485e; margin-top: 18px; padding-top: 20px; }
+.confirmation-feedback { font-size: 13px; color: #d6e7c9; overflow-wrap: anywhere; }
+.confirmation-feedback.has-error { color: #ffc3b9; }
+.confirmed-summary { color: #b7c4da; font-size: 11px; overflow-wrap: anywhere; }
+.primary-action { min-height: 48px; width: 100%; padding: 12px 16px; margin-bottom: 10px; background: #b4f47e; color: #162016; border: 0; border-radius: 10px; font-weight: 700; font-size: 14px; }
 @media (max-width: 960px) {
   .workspace { grid-template-columns: minmax(0, 1fr); }
   .board-panel { position: static; }
